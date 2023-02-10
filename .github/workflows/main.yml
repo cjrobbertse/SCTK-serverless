@@ -13,6 +13,13 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3.3.0
 
+    - name: Node setup
+      uses: actions/setup-node@v3.6.0
+      with:
+        node-version: 18
+      run: |
+        npm ci
+
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
