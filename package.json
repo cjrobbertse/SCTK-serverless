@@ -1,0 +1,23 @@
+{
+  "name": "sctk-serverless",
+  "version": "1.0.0",
+  "description": "Use the following commands to update the AWS remote:",
+  "main": "index.mjs",
+  "scripts": {
+    "start": "node index.mjs",
+    "test": "echo \"Error: no test specified && exit 1\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cjrobbertse/SCTK-serverless.git"
+  },
+  "author": "Christopher J Robbertse",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cjrobbertse/SCTK-serverless/issues"
+  },
+  "homepage": "https://github.com/cjrobbertse/SCTK-serverless#readme",
+  "dependencies": {
+    "lambda-multipart-parser": "^1.0.1"
+  }
+}
