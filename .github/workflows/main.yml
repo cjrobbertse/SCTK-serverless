@@ -17,6 +17,8 @@ jobs:
       uses: actions/setup-node@v3.6.0
       with:
         node-version: 18
+
+    - name: Install npm modules
       run: |
         npm ci
 
