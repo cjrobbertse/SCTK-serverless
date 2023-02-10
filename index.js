@@ -1,4 +1,4 @@
-import parser from 'lambda-multipart-parser'
+const parser = require('lambda-multipart-parser')
 
 export const handler = async(event) => {
     console.log('hello from the my zip :)')
