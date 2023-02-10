@@ -2,7 +2,7 @@
   "name": "sctk-serverless",
   "version": "1.0.0",
   "description": "Use the following commands to update the AWS remote:",
-  "main": "index.mjs",
+  "main": "index.js",
   "scripts": {
     "start": "node index.mjs",
     "test": "echo \"Error: no test specified && exit 1\""
