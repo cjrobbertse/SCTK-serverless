@@ -1,7 +1,11 @@
 # SCTK-serverless
 
-> **Note**: Wait about 20 seconds then refresh this page for GitHub Actions to run before continuing to the next step.
+Use the following commands to update the AWS remote:
 
-> **Warning**: Wait about 20 seconds then refresh this page for GitHub Actions to run before continuing to the next step.
+```
+zip -r function.zip .
 
-> **Error**: wasss
+aws lambda update-function-code --function-name SCTK-v3 --zip-file fileb://function.zip
+```
+
+> **Note**: the AWS secrets must be available. Refer to the [AWS docs](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-quickstart.html) for more information.
