@@ -1,0 +1,19 @@
+{
+  "name": "sctk-serverless",
+  "version": "1.0.0",
+  "description": "> **Note**: Wait about 20 seconds then refresh this page for GitHub Actions to run before continuing to the next step.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cjrobbertse/SCTK-serverless.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cjrobbertse/SCTK-serverless/issues"
+  },
+  "homepage": "https://github.com/cjrobbertse/SCTK-serverless#readme"
+}
