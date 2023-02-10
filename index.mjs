@@ -1,4 +1,4 @@
-// import parser from 'lambda-multipart-parser'
+import parser from 'lambda-multipart-parser'
 
 export const handler = async(event) => {
     console.log('hello from the my zip :)')
@@ -12,7 +12,7 @@ export const handler = async(event) => {
         body: {
             message: JSON.stringify('Hello from Lambda!'),
             event: event,
-            customMessage: 'hello its chris'
+            customMessage: "hello its chris's new message"
         }
     };
     return response;
