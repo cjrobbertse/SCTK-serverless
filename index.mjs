@@ -1,6 +1,6 @@
-const parser = require('lambda-multipart-parser')
+// const parser = require('lambda-multipart-parser')
 
-const handler = async(event) => {
+export const handler = async(event) => {
     console.log('hello from the my zip :)')
     // const result = await parser.parse(event)
 
@@ -17,5 +17,3 @@ const handler = async(event) => {
     };
     return response;
 };
-
-module.exports = { handler }
