@@ -1,7 +1,7 @@
 // const parser = require('lambda-multipart-parser')
 import got from 'got'
 
-const handler = async(event) => {
+export const handler = async(event) => {
     const params = '?per_page=200'
     const tmf_org_repos_url = `https://api.github.com/orgs/tmforum-apis/repos${params}`
 
@@ -11,7 +11,7 @@ const handler = async(event) => {
         return repo.name
     })
 
-    return { repo_names }
+    return repo_names
 
 
     // console.log('hello from the my zip :)')
@@ -48,4 +48,4 @@ const handler = async(event) => {
     // I'm not sure how I can strip it back s easily
 };
 
-module.exports = { handler }
+// module.exports = { handler }
