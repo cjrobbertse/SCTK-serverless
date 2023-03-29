@@ -1,22 +1,35 @@
-const parser = require('lambda-multipart-parser')
+// const parser = require('lambda-multipart-parser')
+import got from 'got'
 
 const handler = async(event) => {
-    console.log('hello from the my zip :)')
-    // const result = await parser.parse(event)
+    const params = '?per_page=200'
+    const tmf_org_repos_url = `https://api.github.com/orgs/tmforum-apis/repos${params}`
 
-    // console.log(result)
+    const response = await got(tmf_org_repos_url).json()
 
-    // TODO implement
-    // return a custom response object to log some values, test and debug.
-    const response = {
-        statusCode: 200,
-        body: {
-            message: JSON.stringify('Hello from Lambda!'),
-            event: event,  // input event variable
-            customMessage: "hello its chris's new message"
-        }
-    };
-    return response;
+    const repo_names = response.map((repo) => {
+        return repo.name
+    })
+
+    return { repo_names }
+
+
+    // console.log('hello from the my zip :)')
+    // // const result = await parser.parse(event)
+    //
+    // // console.log(result)
+    //
+    // // TODO implement
+    // // return a custom response object to log some values, test and debug.
+    // const response = {
+    //     statusCode: 200,
+    //     body: {
+    //         message: JSON.stringify('Hello from Lambda!'),
+    //         event: event,  // input event variable
+    //         customMessage: "hello its chris's new message"
+    //     }
+    // };
+    // return response;
 
 
 
