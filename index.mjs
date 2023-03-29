@@ -1,17 +1,19 @@
-// const parser = require('lambda-multipart-parser')
+import parser from 'lambda-multipart-parser'
 import got from 'got'
 
 export const handler = async(event) => {
-    const params = '?per_page=200'
-    const tmf_org_repos_url = `https://api.github.com/orgs/tmforum-apis/repos${params}`
+    const tmf_repo_names = await get_tmf_repo_names()
+    // const body = event?.body
+    // const request_path = event?.requestContext?.path
 
-    const response = await got(tmf_org_repos_url).json()
+    // const result = await parser.parse(event)
 
-    const repo_names = response.map((repo) => {
-        return repo.name
-    })
+    const response1 = await got('https://raw.githubusercontent.com/tmforum-apis/TMF700_ShippingOrder/main/TMF700-ShippingOrder-v4.0.0.swagger.json').json()
 
-    return repo_names
+    return 'ok'
+    // return Buffer.from(await body, 'base64')
+
+
 
 
     // console.log('hello from the my zip :)')
@@ -48,4 +50,19 @@ export const handler = async(event) => {
     // I'm not sure how I can strip it back s easily
 };
 
+const get_tmf_repo_names = async () => {
+    const params = '?per_page=200'
+    const tmf_org_repos_url = `https://api.github.com/orgs/tmforum-apis/repos${params}`
+
+    const response = await got(tmf_org_repos_url).json()
+
+    const repo_names = response.map((repo) => {
+        return repo.name
+    })
+
+    return repo_names
+}
+
 // module.exports = { handler }
+
+await handler()
