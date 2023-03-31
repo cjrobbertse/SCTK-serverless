@@ -65,12 +65,31 @@ export const handler = async(event) => {
 
     const result = await parser.parse(event)
     console.log(result)
+
     const file_content = result.files[0].content
 
+    const official_swagger_file = result.files.filter((value) => {
+        return value.fieldname == "official_swagger_file"
+    })[0]
+    console.log(official_swagger_file)
+
+    const modified_swagger_file = result.files.filter((value) => {
+        return value.fieldname == "modified_swagger_file"
+    })[0]
+    console.log(modified_swagger_file)
+
+    const official_swagger = JSON.parse(official_swagger_file.content.toString('ascii'))
+    console.log(official_swagger)
+
+    const modified_swagger = JSON.parse(modified_swagger_file.content.toString('ascii'))
+    console.log(modified_swagger)
+
+
+
     // const anti_buffer = file_content.toJSON()
-    console.log(file_content)
-    console.log(file_content.toString('ascii'))
-    console.log(JSON.parse(file_content.toString('ascii')))
+    // console.log(file_content)
+    // console.log(file_content.toString('ascii'))
+    // console.log(JSON.parse(file_content.toString('ascii')))
 
 
     let responseBody = {
