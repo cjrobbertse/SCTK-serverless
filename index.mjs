@@ -1,17 +1,12 @@
-import parser from 'lambda-multipart-parser'
 import got from 'got'
 
 export const handler = async(event) => {
-    const tmf_repo_names = await get_tmf_repo_names()
-    // const body = event?.body
-    // const request_path = event?.requestContext?.path
+    const body = event?.body
 
-    // const result = await parser.parse(event)
+    // const response1 = await got('https://raw.githubusercontent.com/tmforum-apis/TMF700_ShippingOrder/main/TMF700-ShippingOrder-v4.0.0.swagger.json').json()
 
-    const response1 = await got('https://raw.githubusercontent.com/tmforum-apis/TMF700_ShippingOrder/main/TMF700-ShippingOrder-v4.0.0.swagger.json').json()
 
     return 'ok'
-    // return Buffer.from(await body, 'base64')
 
 
 
@@ -49,19 +44,6 @@ export const handler = async(event) => {
     // it might be easier to use the original SCTK. with everything attached
     // I'm not sure how I can strip it back s easily
 };
-
-const get_tmf_repo_names = async () => {
-    const params = '?per_page=200'
-    const tmf_org_repos_url = `https://api.github.com/orgs/tmforum-apis/repos${params}`
-
-    const response = await got(tmf_org_repos_url).json()
-
-    const repo_names = response.map((repo) => {
-        return repo.name
-    })
-
-    return repo_names
-}
 
 // module.exports = { handler }
 
