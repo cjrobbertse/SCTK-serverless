@@ -18,7 +18,6 @@
   },
   "homepage": "https://github.com/cjrobbertse/SCTK-serverless#readme",
   "dependencies": {
-    "got": "^12.6.0",
-    "lambda-multipart-parser": "^1.0.1"
+    "got": "^12.6.0"
   }
 }
