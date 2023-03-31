@@ -1,99 +1,34 @@
-// 'use strict';
-// console.log('Loading hello world function');
-//
-// export const handler = async (event) => {
-//     let name = "you";
-//     let city = 'World';
-//     let time = 'day';
-//     let day = '';
-//     let responseCode = 200;
-//     console.log("request: " + JSON.stringify(event));
-//
-//     if (event.queryStringParameters && event.queryStringParameters.name) {
-//         console.log("Received name: " + event.queryStringParameters.name);
-//         name = event.queryStringParameters.name;
-//     }
-//
-//     if (event.queryStringParameters && event.queryStringParameters.city) {
-//         console.log("Received city: " + event.queryStringParameters.city);
-//         city = event.queryStringParameters.city;
-//     }
-//
-//     if (event.headers && event.headers['day']) {
-//         console.log("Received day: " + event.headers.day);
-//         day = event.headers.day;
-//     }
-//
-//     if (event.body) {
-//         let body = JSON.parse(event.body)
-//         if (body.time)
-//             time = body.time;
-//     }
-//
-//     let greeting = `Good ${time}, ${name} of ${city}.`;
-//     if (day) greeting += ` Happy ${day}!`;
-//
-//     let responseBody = {
-//         message: greeting,
-//         input: event
-//     };
-//
-//     // The output from a Lambda proxy integration must be
-//     // in the following JSON object. The 'headers' property
-//     // is for custom response headers in addition to standard
-//     // ones. The 'body' property  must be a JSON string. For
-//     // base64-encoded payload, you must also set the 'isBase64Encoded'
-//     // property to 'true'.
-//     let response = {
-//         statusCode: responseCode,
-//         headers: {
-//             "x-custom-header" : "my custom header value"
-//         },
-//         body: JSON.stringify(responseBody)
-//     };
-//     console.log("response: " + JSON.stringify(response))
-//     return response;
-// };
-
-
-// import got from 'got'
-//
-
 import parser from 'lambda-multipart-parser'
+import swagger_diff from 'swagger-diff'
+
 export const handler = async(event) => {
     // console.log(event)
 
     const result = await parser.parse(event)
-    console.log(result)
-
-    const file_content = result.files[0].content
+    // console.log(result)
 
     const official_swagger_file = result.files.filter((value) => {
         return value.fieldname == "official_swagger_file"
     })[0]
-    console.log(official_swagger_file)
+    // console.log(official_swagger_file)
 
     const modified_swagger_file = result.files.filter((value) => {
         return value.fieldname == "modified_swagger_file"
     })[0]
-    console.log(modified_swagger_file)
+    // console.log(modified_swagger_file)
 
     const official_swagger = JSON.parse(official_swagger_file.content.toString('ascii'))
-    console.log(official_swagger)
+    // console.log(official_swagger)
 
     const modified_swagger = JSON.parse(modified_swagger_file.content.toString('ascii'))
-    console.log(modified_swagger)
+    // console.log(modified_swagger)
 
+    const diff = await swagger_diff(official_swagger, modified_swagger)
 
-
-    // const anti_buffer = file_content.toJSON()
-    // console.log(file_content)
-    // console.log(file_content.toString('ascii'))
-    // console.log(JSON.parse(file_content.toString('ascii')))
-
+    console.log(diff)
 
     let responseBody = {
-        message: 'ok'
+        message: diff
     }
     let response = {
         statusCode: 200,
